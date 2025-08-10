@@ -9,7 +9,28 @@
 
 void handle_command(const std::string& command);
 std::vector<std::string> split(const std::string& str, char delimiter);
-void usage();
+std::string remove_at_prefix(const std::string& nickname);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// usage
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void usage()
+{
+  std::cout << "Usage:\n";
+  std::cout << "/j #channel - join or create a channel\n";
+  std::cout << "/m @name message - send private message\n";
+  std::cout << "/w - see who's online\n";
+  std::cout << "/channels - show all discovered channels\n";
+  std::cout << "/clear - clear chat messages\n";
+  std::cout << "/hug @name - send a hug\n";
+  std::cout << "/slap @name - slap someone with a trout\n";
+  std::cout << "/block @name - block a peer\n";
+  std::cout << "/block - list all blocked peers\n";
+  std::cout << "/unblock @name - unblock a peer\n";
+  std::cout << "/fav @name - add to favorites\n";
+  std::cout << "/unfav @name - remove from favorites\n";
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // main
@@ -49,12 +70,28 @@ void handle_command(const std::string& command)
 
   std::string cmd = parts[0];
 
+  std::string name;
+
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // /msg
+  // /j #channel
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  if (cmd == "/m" || cmd == "/msg")
+  if (cmd == "/j")
   {
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  // /m @name message
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  else if (cmd == "/m" || cmd == "/msg")
+  {
+    if (parts.size() > 1)
+    {
+      name = parts[1];
+      name = remove_at_prefix(name);
+      std::cout << name;
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,51 +111,88 @@ void handle_command(const std::string& command)
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // /hug
+  // /hug @name
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
   else if (cmd == "/hug")
   {
+
+    if (parts.size() > 1)
+    {
+      name = parts[1];
+      name = remove_at_prefix(name);
+      std::cout << name;
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // /slap
+  // /slap @name
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
   else if (cmd == "/slap")
   {
+    if (parts.size() > 1)
+    {
+      name = parts[1];
+      name = remove_at_prefix(name);
+      std::cout << name;
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // /block
+  // /block @name
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
   else if (cmd == "/block")
   {
+    if (parts.size() > 1)
+    {
+      name = parts[1];
+      name = remove_at_prefix(name);
+      std::cout << name;
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // /unblock
+  // /unblock @name
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
   else if (cmd == "/unblock")
   {
+    if (parts.size() > 1)
+    {
+      name = parts[1];
+      name = remove_at_prefix(name);
+      std::cout << name;
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // /fav
+  // /fav @name
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
   else if (cmd == "/fav")
   {
+    if (parts.size() > 1)
+    {
+      name = parts[1];
+      name = remove_at_prefix(name);
+      std::cout << name;
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // /unfav
+  // /unfav @name
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
   else if (cmd == "/unfav")
   {
+    if (parts.size() > 1)
+    {
+      name = parts[1];
+      name = remove_at_prefix(name);
+      std::cout << name;
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -152,19 +226,15 @@ std::vector<std::string> split(const std::string& str, char delimiter)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-// usage
+// remove_at_prefix
+// remove @ prefix
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void usage()
+std::string remove_at_prefix(const std::string& nickname)
 {
-  std::cout << "Usage:\n";
-  std::cout << "/m <nickname> [message] - send private message\n";
-  std::cout << "/w - see who's online\n";
-  std::cout << "/clear - clear chat messages\n";
-  std::cout << "/hug <nickname> - send a hug\n";
-  std::cout << "/slap <nickname> - slap someone with a trout\n";
-  std::cout << "/block <nickname> - block a peer\n";
-  std::cout << "/unblock <nickname> - unblock a peer\n";
-  std::cout << "/fav <nickname> - add to favorites\n";
-  std::cout << "/unfav <nickname> - remove from favorites\n";
+  if (!nickname.empty() && nickname[0] == '@')
+  {
+    return nickname.substr(1);
+  }
+  return nickname;
 }
