@@ -1,0 +1,33 @@
+// This file is part of 'bitchat.desktop' 
+// Copyright (c) 2025, Red Panda Software LLC, Pedro Vicente. All rights reserved.
+// http://www.thesunroom.org/
+// See file LICENSE for full license details.
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "log.hh"
+
+std::ofstream ofs_log;
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// open_log
+// must be called at start of every program
+// opens an output file stream for file generation
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void open_log()
+{
+  ofs_log.open("bitchat.log.txt", std::ofstream::trunc);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// log
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void log(const std::string& msg)
+{
+  std::cout << msg << std::endl;
+  ofs_log << msg << std::endl;
+}
+
