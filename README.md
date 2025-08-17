@@ -1,15 +1,16 @@
 # bitchat.desktop
 bitchat network running on desktop (Windows, Mac, Linux) 
 
-bitchat is decentralized peer-to-peer messaging app that works over Bluetooth mesh networks
+bitchat is a decentralized peer-to-peer messaging app that works over Bluetooth mesh networks
 
 https://github.com/permissionlesstech/bitchat
 
-bitchat works exclusively on desktop computers. Supported operating systems:
+bitchat.desktop works exclusively on desktop computers. Supported operating systems:
 
 - Windows
 - Linux 
 - Mac OS
+- Raspberry OS
 
 ## Usage
 

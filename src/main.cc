@@ -12,7 +12,8 @@
 
 void usage()
 {
-  std::cout << "Usage:\n";
+  std::cout << "bitchat commands:\n";
+  std::cout << "/connect <host> <port> - connect to another peer\n";
   std::cout << "/j #channel - join or create a channel\n";
   std::cout << "/m @name message - send private message\n";
   std::cout << "/w - see who's online\n";
@@ -31,7 +32,7 @@ void usage()
 // main
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int main()
+int main(int argc, char* argv[])
 {
   open_log();
   std::string line;
